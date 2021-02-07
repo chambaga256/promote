@@ -273,7 +273,7 @@
 					<h3>Talented</h3>
 					<div class="simply-countdown simply-countdown-one"></div>
 					<p><strong>We Unlock , Your Talent!</strong></p>
-					<p><a href="#" class="btn btn-primary btn-lg">Donate Now!</a></p>
+				<p><div id="paypal-payment-button"></div></p>
 				</div>
 			</div>
 		</div>
@@ -349,6 +349,26 @@
 	</div>
 	
 	<!-- jQuery -->
+	<script src="https://www.paypal.com/sdk/js?client-id=AWtWeGigUcePWWKUfXWn4Ikq2SpOITTfHeT_pYrjbmSFkXmdtLwvlLk8XrvgzhHg5liewi7QjAz5k6oq&disable-funding=credit,card"></script>
+<script>paypal.Buttons({
+  style:{
+    color:'blue',
+    shape:'pill'
+  },
+  createOrder(data, actions){
+    return actions.order.create({
+      purchase_units:[{
+        amount:{
+          value:'0.1'
+        }
+      }]
+    });
+  },
+  onApprove:function(data, actions){
+    return actions.order.capture()
+  }
+}).render('#paypal-payment-button');</script>
+
 	<script src="js/jquery.min.js"></script>
 	<!-- jQuery Easing -->
 	<script src="js/jquery.easing.1.3.js"></script>
